@@ -13,7 +13,7 @@ class MongoDB {
 							clearInterval(intID)
 							res()
 						}
-					})
+					}, 20)
 				})
 			}
 

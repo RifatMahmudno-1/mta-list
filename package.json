@@ -1,0 +1,22 @@
+{
+	"name": "mtalist",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare"
+	},
+	"dependencies": {
+		"@nuxtjs/tailwindcss": "^6.12.0",
+		"@types/bcrypt": "^5.0.2",
+		"ajv": "^8.13.0",
+		"bcrypt": "^5.1.1",
+		"mongodb": "^6.6.1",
+		"nuxt": "^3.11.2",
+		"vue": "^3.4.27",
+		"vue-router": "^4.3.2"
+	}
+}

@@ -1,0 +1,69 @@
+export default defineEventHandler(async ev => {
+	const { req, res } = modifyH3(ev)
+
+	try {
+		const { tmdbType, tmdbTypeError } = tmdbTE(req)
+		if (!tmdbType) return tmdbTypeError
+
+		const arr = []
+
+		if (tmdbType === 'movie') {
+			arr.push(
+				{
+					link: `/api/${tmdbType}/trending`,
+					query: { page: 1, time: 'week' },
+					type: 'Trending'
+				},
+				{
+					link: `/api/${tmdbType}/top`,
+					query: { page: 1 },
+					type: 'Top'
+				},
+				{
+					link: `/api/${tmdbType}/popular`,
+					query: { page: 1 },
+					type: 'Popular'
+				},
+				{
+					link: `/api/${tmdbType}/airing`,
+					query: { page: 1, status: 'now_playing' },
+					type: 'Airing'
+				},
+				{
+					link: `/api/${tmdbType}/upcoming`,
+					query: { page: 1 },
+					type: 'Upcoming'
+				}
+			)
+		} else {
+			arr.push(
+				{
+					link: `/api/${tmdbType}/trending`,
+					query: { page: 1, time: 'week' },
+					type: 'Trending'
+				},
+				{
+					link: `/api/${tmdbType}/top`,
+					query: { page: 1 },
+					type: 'Top'
+				},
+				{
+					link: `/api/${tmdbType}/popular`,
+					query: { page: 1 },
+					type: 'Popular'
+				},
+				{
+					link: `/api/${tmdbType}/airing`,
+					query: { page: 1, status: 'airing_today' },
+					type: 'Airing'
+				}
+			)
+		}
+
+		const dataArr = await Promise.all(arr.map(el => $fetch(el.link, { query: el.query })))
+
+		return res.send(arr.map((el, ind) => ({ type: el.type, data: dataArr[ind] })))
+	} catch (e) {
+		return responseError(e, res)
+	}
+})

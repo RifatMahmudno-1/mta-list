@@ -1,0 +1,39 @@
+export default defineEventHandler(async ev => {
+	const { req, res } = modifyH3(ev)
+
+	try {
+		const arr = [
+			{
+				link: `/api/anime/trending`,
+				query: { page: 1 },
+				type: 'Trending'
+			},
+			{
+				link: `/api/anime/top`,
+				query: { page: 1 },
+				type: 'Top'
+			},
+			{
+				link: `/api/anime/popular`,
+				query: { page: 1 },
+				type: 'Popular'
+			},
+			{
+				link: `/api/anime/airing`,
+				query: { page: 1 },
+				type: 'Airing'
+			},
+			{
+				link: `/api/anime/upcoming`,
+				query: { page: 1 },
+				type: 'Upcoming'
+			}
+		]
+
+		const dataArr = await Promise.all(arr.map(el => $fetch(el.link, { query: el.query })))
+
+		return res.send(arr.map((el, ind) => ({ type: el.type, data: dataArr[ind] })))
+	} catch (e) {
+		return responseError(e, res)
+	}
+})

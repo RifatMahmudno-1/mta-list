@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	svg {
+		@apply inline-block align-middle;
+	}
+
+	input,
+	button,
+	textarea {
+		@apply outline-none disabled:opacity-70;
+	}
+
+	@keyframes notificationSlideInOut {
+		5%,
+		95% {
+			@apply translate-x-0;
+		}
+		0%,
+		100% {
+			@apply translate-x-full;
+		}
+	}
+
+	:root {
+		--theme-color-50: #fffbeb;
+		--theme-color-100: #fef3c7;
+		--theme-color-200: #fde68a;
+		--theme-color-300: #fcd34d;
+		--theme-color-400: #fbbf24;
+		--theme-color-500: #f59e0b;
+		--theme-color-600: #d97706;
+		--theme-color-700: #b45309;
+		--theme-color-800: #92400e;
+		--theme-color-900: #78350f;
+		--theme-color-950: #451a03;
+	}
+}
+
+.cont {
+	@apply w-full max-w-screen-xl mx-auto;
+}
+
+.loading {
+	@apply animate-pulse bg-theme-color-200;
+}
+
+:root[theme='tv'] {
+	--theme-color-50: #f0fdfa;
+	--theme-color-100: #ccfbf1;
+	--theme-color-200: #99f6e4;
+	--theme-color-300: #5eead4;
+	--theme-color-400: #2dd4bf;
+	--theme-color-500: #14b8a6;
+	--theme-color-600: #0d9488;
+	--theme-color-700: #0f766e;
+	--theme-color-800: #115e59;
+	--theme-color-900: #134e4a;
+	--theme-color-950: #042f2e;
+}
+
+:root[theme='anime'] {
+	--theme-color-50: #f0f9ff;
+	--theme-color-100: #e0f2fe;
+	--theme-color-200: #bae6fd;
+	--theme-color-300: #7dd3fc;
+	--theme-color-400: #38bdf8;
+	--theme-color-500: #0ea5e9;
+	--theme-color-600: #0284c7;
+	--theme-color-700: #0369a1;
+	--theme-color-800: #075985;
+	--theme-color-900: #0c4a6e;
+	--theme-color-950: #082f49;
+}
+
+:root[theme='movie'] {
+	--theme-color-50: #faf5ff;
+	--theme-color-100: #f3e8ff;
+	--theme-color-200: #e9d5ff;
+	--theme-color-300: #d8b4fe;
+	--theme-color-400: #c084fc;
+	--theme-color-500: #a855f7;
+	--theme-color-600: #9333ea;
+	--theme-color-700: #7e22ce;
+	--theme-color-800: #6b21a8;
+	--theme-color-900: #581c87;
+	--theme-color-950: #3b0764;
+}
+
+:root[theme='list'] {
+	--theme-color-50: #f7fee7;
+	--theme-color-100: #ecfccb;
+	--theme-color-200: #d9f99d;
+	--theme-color-300: #bef264;
+	--theme-color-400: #a3e635;
+	--theme-color-500: #84cc16;
+	--theme-color-600: #65a30d;
+	--theme-color-700: #4d7c0f;
+	--theme-color-800: #3f6212;
+	--theme-color-900: #365314;
+	--theme-color-950: #1a2e05;
+}

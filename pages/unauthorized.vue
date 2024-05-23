@@ -15,8 +15,11 @@
 	useHead({
 		title: 'Unauthorized',
 		meta: [
+			{ name: 'description', content: 'A beautiful and modern website to keep track of Movies, TV shows & seasons and animes.' },
 			{ property: 'og:title', content: 'Unauthorized' },
-			{ name: 'twitter:title', content: 'Unauthorized' }
+			{ property: 'og:description', content: 'A beautiful and modern website to keep track of Movies, TV shows & seasons and animes.' },
+			{ name: 'twitter:title', content: 'Unauthorized' },
+			{ name: 'twitter:description', content: 'A beautiful and modern website to keep track of Movies, TV shows & seasons and animes.' }
 		]
 	})
 </script>

@@ -55,26 +55,15 @@
 	if (process.client && !globalThis.navigator?.onLine) netError.value = true
 	else if (error.statusCode === 401) navigateTo('/unauthorized')
 
-	const titleDesc = {
-		title: 'MTA List',
-		description: 'A beautiful and modern website to keep track of Movies, TV shows & seasons and animes.'
-	}
-
-	if (netError.value) titleDesc.title = 'No Internet'
-	else if (error.statusCode === 404) titleDesc.title = 'Not found'
-	else titleDesc.title = 'Error'
-
 	const url = useRequestURL().origin
 	useHead({
-		title: titleDesc.title,
+		title: netError.value ? 'No Internet' : error.statusCode === 404 ? 'Not Found' : 'Error',
 		meta: [
-			{ name: 'description', content: titleDesc.description },
-
-			{ property: 'og:title', content: titleDesc.title },
-			{ property: 'og:description', content: titleDesc.description },
-
-			{ name: 'twitter:title', content: titleDesc.title },
-			{ name: 'twitter:description', content: titleDesc.description },
+			{ name: 'description', content: 'A beautiful and modern website to keep track of Movies, TV shows & seasons and animes.' },
+			{ property: 'og:title', content: 'MTA List' },
+			{ property: 'og:description', content: 'A beautiful and modern website to keep track of Movies, TV shows & seasons and animes.' },
+			{ name: 'twitter:title', content: 'MTA List' },
+			{ name: 'twitter:description', content: 'A beautiful and modern website to keep track of Movies, TV shows & seasons and animes.' },
 
 			{ property: 'og:url', content: url },
 			{ property: 'og:image', content: `${url}/logos/logo_512.png` },

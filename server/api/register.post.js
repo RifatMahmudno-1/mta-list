@@ -5,10 +5,9 @@ const schema = {
 	properties: {
 		email: { type: 'string', minLength: 8 },
 		pass: { type: 'string', minLength: 6 },
-		name: { type: 'string', minLength: 4 },
-		stay: { type: 'boolean' }
+		name: { type: 'string', minLength: 4 }
 	},
-	required: ['email', 'pass', 'name', 'stay'],
+	required: ['email', 'pass', 'name'],
 	additionalProperties: false
 }
 
@@ -22,7 +21,12 @@ export default defineEventHandler(async ev => {
 		let validation = req.validate(schema, req.body)
 		if (validation.error) return res.setStatus(400).send(validation)
 
-		if (await mongo.client.db('MTAlist').collection('Users').findOne({ email: req.body.email })) return res.send({ status: 'alreadyRegistered' })
+		const got = await mongo.client.db('MTAlist').collection('Users').findOne({ email: req.body.email })
+
+		if (got) {
+			if (!got.mailVerified) return res.send({ status: 'mailNotVerified' })
+			return res.send({ status: 'alreadyRegistered' })
+		}
 
 		const _id = new mongo.ObjectId().toString()
 		const credentialsChangedAt = Date.now()
@@ -37,20 +41,7 @@ export default defineEventHandler(async ev => {
 				credentialsChangedAt
 			})
 
-		return res
-			.setCookie('TokenS', await aesEncrypt(_id + '::' + credentialsChangedAt, process.env.CookiePrivateKey), {
-				path: '/',
-				maxAge: req.body.stay ? 2592000 : null
-			})
-			.setCookie('TokenP', await aesEncrypt('MTAlist', process.env.VITE_CookiePublicKey), {
-				path: '/',
-				maxAge: req.body.stay ? 2592000 : null
-			})
-			.setCookie('Stay', req.body.stay ? 'Yes' : 'No', {
-				path: '/',
-				maxAge: req.body.stay ? 2592000 : null
-			})
-			.send({ status: 'success' })
+		return res.send({ status: 'success' })
 	} catch (e) {
 		return responseError(e, res)
 	}

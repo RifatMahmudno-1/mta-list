@@ -10,8 +10,6 @@
 			<input type="password" id="pass" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter your password" required minlength="6" v-model="passInp" :disabled="sending" />
 			<label for="re_pass">&nbsp;</label>
 			<input type="password" id="re_pass" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Retype that password" required minlength="6" v-model="re_passInp" @input="comparePass" :disabled="sending" />
-			<input type="checkbox" v-model="stayInp" class="justify-self-end accent-theme-color-500" id="stay" />
-			<label for="stay" class="select-none">Stay logged in</label>
 			<button class="bg-theme-color-500 w-fit mx-auto col-[1/-1] px-2 py-1 rounded hover:shadow-md transition-shadow" :disabled="sending">Register</button>
 			<p class="col-[1/-1] text-center">Already have an account? <NuxtLink href="/login" class="text-theme-color-800 underline">Login Now</NuxtLink></p>
 		</form>
@@ -36,7 +34,6 @@
 	const emailInp = ref('')
 	const passInp = ref('')
 	const re_passInp = ref('')
-	const stayInp = ref(false)
 
 	const sending = ref(false)
 	async function submit() {
@@ -50,13 +47,16 @@
 				body: {
 					name: nameInp.value,
 					email: emailInp.value,
-					pass: passInp.value,
-					stay: stayInp.value
+					pass: passInp.value
 				}
 			})
 
-			if (got.status === 'alreadyRegistered') setNoti(`You already have an account with that email. Login now.`)
-			else if (got.status === 'success') {
+			if (got.status === 'alreadyRegistered') {
+				setNoti(`You already have an account with that email. Please login.`)
+			} else if (got.status === 'mailNotVerified') {
+				setNoti(`Please verify your email address.`)
+				router.push({ path: '/verify_email' })
+			} else if (got.status === 'success') {
 				setNoti('Successfully registered and logged in.')
 				router.push({ path: '/list' })
 			} else showError({ statusCode: 500, message: 'Invalid response.' })

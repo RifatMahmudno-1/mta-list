@@ -1,4 +1,5 @@
 import { hashSync } from 'bcrypt'
+import { customAlphabet } from 'nanoid'
 
 const schema = {
 	type: 'object',
@@ -40,7 +41,7 @@ export default defineEventHandler(async ev => {
 		const verifyObj = await mongo.client.db('MTAlist').collection('ResetPassCodes').findOne({ _id: got._id })
 
 		if (!verifyObj || verifyObj.time + 600_000 < Date.now()) {
-			const code = getRandomString(16)
+			const code = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 16)()
 			const time = Date.now()
 			await mongo.client.db('MTAlist').collection('ResetPassCodes').updateOne({ _id: got._id }, { $set: { code, time } }, { upsert: true })
 

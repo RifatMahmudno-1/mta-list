@@ -1,3 +1,5 @@
+import { customAlphabet } from 'nanoid'
+
 const schema = {
 	type: 'object',
 	properties: {
@@ -26,7 +28,7 @@ export default defineEventHandler(async ev => {
 		const verifyObj = await mongo.client.db('MTAlist').collection('MailVerifyCodes').findOne({ _id: got._id })
 
 		if (!verifyObj || verifyObj.time + 600_000 < Date.now()) {
-			const code = getRandomString(8)
+			const code = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 8)()
 			const time = Date.now()
 			await mongo.client.db('MTAlist').collection('MailVerifyCodes').updateOne({ _id: got._id }, { $set: { code, time } }, { upsert: true })
 

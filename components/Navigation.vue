@@ -29,13 +29,16 @@
 	const router = useRouter()
 	const route = useRoute()
 	const selectables = ref({ movie: 'Movie', tv: 'TV', anime: 'Anime' })
-	const selected = computed(() => route.params.type)
+	const selected = computed(() => (route.params.type || route.path === '/list' ? 'movie' : undefined))
 	const shouldShow = computed(() => (selectables.value[selected.value] ? true : false))
 
 	const query = ref('')
 
 	function search() {
 		router.push({ path: `/${selected.value}/search`, query: { query: query.value } })
-		query.value = ''
 	}
+
+	watch(shouldShow, () => {
+		query.value = ''
+	})
 </script>

@@ -2,13 +2,14 @@
 	<main class="grid items-center justify-items-center p-2">
 		<form class="w-full max-w-[35rem] bg-theme-color-300 p-4 rounded border-theme-color-500 border-2 grid gap-2 shadow-md grid-cols-[auto_1fr] items-center" spellcheck="false" @submit.prevent="submit">
 			<h1 class="w-fit mx-auto px-4 pb-1 border-b-2 border-theme-color-500 text-lg font-semibold col-[1/-1]">Reset Password</h1>
-			<slot v-if="!gotEmail">
-				<label for="email">Email:</label>
-				<input type="email" id="email" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter your email address" required minlength="8" v-model="emailInp" :disabled="sending" />
-				<button type="submit" class="bg-theme-color-500 w-fit mx-auto col-[1/-1] px-2 py-1 rounded hover:shadow-md transition-shadow" :disabled="sending">Send Code</button>
-			</slot>
+			<p class="col-[1/-1] text-center" v-if="gotEmail">Enter the code sent to your email</p>
+			<label for="email">Email:</label>
+			<div class="flex gap-2">
+				<input type="email" id="email" class="w-full px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter your email address" required minlength="8" v-model="emailInp" :disabled="gotEmail || sending" />
+				<button v-if="gotEmail" type="button" :disabled="sending" class="bg-theme-color-500 rounded px-1" @click="editMail"><IconEdit /></button>
+			</div>
+			<button v-if="!gotEmail" type="submit" class="bg-theme-color-500 w-fit mx-auto col-[1/-1] px-2 py-1 rounded hover:shadow-md transition-shadow" :disabled="sending">Send Code</button>
 			<slot v-else>
-				<p class="col-[1/-1] text-center">Enter the code sent to your email</p>
 				<label for="code">Code:</label>
 				<input type="text" autocomplete="off" id="code" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter code form email" required minlength="16" maxlength="16" v-model="codeInp" :disabled="sending" />
 				<label for="pass">Password:</label>
@@ -44,6 +45,14 @@
 	const re_passInp = ref('')
 	const codeInp = ref('')
 	const sending = ref(false)
+
+	function editMail() {
+		gotEmail.value = false
+		passInp.value = ''
+		re_passInp.value = ''
+		codeInp.value = ''
+		sending.value = false
+	}
 
 	async function submit() {
 		if (sending.value) return

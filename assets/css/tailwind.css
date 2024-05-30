@@ -46,7 +46,7 @@
 		--theme-color-950: #451a03;
 	}
 
-	:root[theme='tv'] {
+	[theme='tv'] {
 		--theme-color-50: #f0fdfa;
 		--theme-color-100: #ccfbf1;
 		--theme-color-200: #99f6e4;
@@ -60,7 +60,7 @@
 		--theme-color-950: #042f2e;
 	}
 
-	:root[theme='anime'] {
+	[theme='anime'] {
 		--theme-color-50: #f0f9ff;
 		--theme-color-100: #e0f2fe;
 		--theme-color-200: #bae6fd;
@@ -74,7 +74,7 @@
 		--theme-color-950: #082f49;
 	}
 
-	:root[theme='movie'] {
+	[theme='movie'] {
 		--theme-color-50: #faf5ff;
 		--theme-color-100: #f3e8ff;
 		--theme-color-200: #e9d5ff;
@@ -88,7 +88,7 @@
 		--theme-color-950: #3b0764;
 	}
 
-	:root[theme='list'] {
+	[theme='list'] {
 		--theme-color-50: #f7fee7;
 		--theme-color-100: #ecfccb;
 		--theme-color-200: #d9f99d;

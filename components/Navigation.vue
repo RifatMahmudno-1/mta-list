@@ -1,5 +1,5 @@
 <template>
-	<nav class="sticky top-0 bg-theme-color-300 z-50">
+	<nav class="sticky top-0 bg-theme-color-300 z-50 shadow-md">
 		<div class="cont grid grid-cols-[auto_1fr_auto] p-2 gap-4 items-center">
 			<div class="flex gap-2 items-center">
 				<NuxtLink href="/" class="flex items-center gap-2">

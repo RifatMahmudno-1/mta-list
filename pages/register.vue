@@ -1,16 +1,16 @@
 <template>
 	<main class="grid items-center justify-items-center p-2">
-		<form @submit.prevent="submit" class="w-full max-w-[35rem] bg-theme-color-300 p-4 rounded border-theme-color-500 border-2 grid gap-2 shadow-md grid-cols-[auto_1fr] items-center">
+		<form @submit.prevent="submit" class="w-full max-w-[35rem] bg-theme-color-300 p-4 rounded border-theme-color-500 border-2 grid gap-2 shadow-md grid-cols-[auto_1fr] items-center" spellcheck="false">
 			<h1 class="w-fit mx-auto px-4 pb-1 border-b-2 border-theme-color-500 text-lg font-semibold col-[1/-1]">Register</h1>
 			<label for="name">Name:</label>
 			<input type="text" id="name" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter your fullname" required minlength="4" v-model="nameInp" :disabled="sending" />
 			<label for="email">Email:</label>
 			<input type="email" id="email" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter your email address" required minlength="8" v-model="emailInp" :disabled="sending" />
 			<label for="pass">Password:</label>
-			<input type="password" id="pass" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter your password" required minlength="6" v-model="passInp" :disabled="sending" />
+			<input type="password" id="pass" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter new password" required minlength="6" v-model="passInp" :disabled="sending" />
 			<label for="re_pass">&nbsp;</label>
 			<input type="password" id="re_pass" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Retype that password" required minlength="6" v-model="re_passInp" @input="comparePass" :disabled="sending" />
-			<button class="bg-theme-color-500 w-fit mx-auto col-[1/-1] px-2 py-1 rounded hover:shadow-md transition-shadow" :disabled="sending">Register</button>
+			<button type="submit" class="bg-theme-color-500 w-fit mx-auto col-[1/-1] px-2 py-1 rounded hover:shadow-md transition-shadow" :disabled="sending">Register</button>
 			<p class="col-[1/-1] text-center">Already have an account? <NuxtLink href="/login" class="text-theme-color-800 underline">Login Now</NuxtLink></p>
 		</form>
 	</main>
@@ -53,12 +53,13 @@
 
 			if (got.status === 'alreadyRegistered') {
 				setNoti(`You already have an account with that email. Please login.`)
+				router.push({ path: '/login' })
 			} else if (got.status === 'mailNotVerified') {
 				setNoti(`Please verify your email address.`)
 				router.push({ path: '/verify_email' })
 			} else if (got.status === 'success') {
-				setNoti('Successfully registered and logged in.')
-				router.push({ path: '/list' })
+				setNoti('Successfully registered. Please verify your email address.')
+				router.push({ path: '/verify_email' })
 			} else showError({ statusCode: 500, message: 'Invalid response.' })
 		} catch (e) {
 			showError(e)

@@ -30,7 +30,7 @@ const guardedRoutes = ['/list']
 export default defineNuxtRouteMiddleware(async to => {
 	if (!to.matched.length) return
 
-	if (to.path === '/login' || to.path === '/register' || to.path === '/unauthorized') return removeCookie()
+	if (['/login', '/register', '/unauthorized', '/verify_email', '/reset_password'].includes(to.path)) return removeCookie()
 
 	const isValid = await validation(to)
 	if (!isValid) removeCookie()

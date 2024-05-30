@@ -24,6 +24,7 @@ export default defineEventHandler(async ev => {
 		const got = await mongo.client.db('MTAlist').collection('Users').findOne({ email: req.body.email })
 
 		if (!got) return res.send({ status: 'notRegistered' })
+		if (!got.mailVerified) return res.send({ status: 'mailNotVerified' })
 		if (!compareSync(req.body.pass, got.pass)) return res.send({ status: 'wrongPass' })
 
 		return res

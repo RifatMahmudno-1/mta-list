@@ -27,13 +27,13 @@
 
 <script setup>
 	useHead({
-		title: 'Verify Email',
+		title: 'Reset Password',
 		meta: [
-			{ name: 'description', content: 'Verify Email to complete registration process' },
-			{ property: 'og:title', content: 'Verify Email' },
-			{ property: 'og:description', content: 'Verify Email to complete registration process' },
-			{ name: 'twitter:title', content: 'Verify Email' },
-			{ name: 'twitter:description', content: 'Verify Email to complete registration process' }
+			{ name: 'description', content: 'Forgot your password? No problem. Reset your password here.' },
+			{ property: 'og:title', content: 'Reset Password' },
+			{ property: 'og:description', content: 'Forgot your password? No problem. Reset your password here.' },
+			{ name: 'twitter:title', content: 'Reset Password' },
+			{ name: 'twitter:description', content: 'Forgot your password? No problem. Reset your password here.' }
 		]
 	})
 

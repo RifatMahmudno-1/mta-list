@@ -1,5 +1,12 @@
+const guardedRoutes = ['/api/list/']
+
 export default defineEventHandler(async ev => {
-	if (!ev.path.startsWith('/api/list/')) return
+	const { pathname } = getRequestURL(ev)
+
+	/**
+	 * Only check auth if guarded route
+	 */
+	if (!guardedRoutes.find(el => pathname.startsWith(el))) return
 
 	const { req, res } = modifyH3(ev)
 	try {
@@ -18,7 +25,7 @@ export default defineEventHandler(async ev => {
 
 		const got = await mongo.client.db('MTAlist').collection('Users').findOne({ _id })
 
-		if (!got || got.credentialsChangedAt?.toString() !== credentialsChangedAt || (isAdmin && !got.admin) || (!isAdmin && got.admin) || (ev.path.startsWith('/api/admin') && !got.admin)) return errorAuth()
+		if (!got || got.credentialsChangedAt?.toString() !== credentialsChangedAt || (isAdmin && !got.admin) || (!isAdmin && got.admin) || (pathname.startsWith('/api/admin/') && !got.admin)) return errorAuth()
 
 		ev.cache.userData = got // save user data
 	} catch (e) {

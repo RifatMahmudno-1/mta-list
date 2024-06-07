@@ -1,7 +1,12 @@
 export default defineEventHandler(async ev => {
-	if (ev.path === '/?csr=1') ev.context.nuxt = { noSSR: true }
+	const url = getRequestURL(ev)
+	if (url.pathname === '/' && url.searchParams.get('csr') === '1') ev.context.nuxt = { noSSR: true }
 
-	if (ev.path.startsWith('/api/list/')) {
+	/**
+	 * try to connect to server on any request made to any route starting with /api
+	 * if fails send 500 error
+	 */
+	if (url.pathname === '/api' || url.pathname.startsWith('/api/')) {
 		if (mongo.connected) return
 
 		await mongo.init()

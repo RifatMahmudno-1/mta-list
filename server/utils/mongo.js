@@ -9,7 +9,7 @@ class MongoDB {
 			if (this.#connecting) {
 				return new Promise(res => {
 					const intID = setInterval(() => {
-						if (!mongo.#connecting) {
+						if (!this.#connecting) {
 							clearInterval(intID)
 							res()
 						}

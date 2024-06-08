@@ -13,36 +13,58 @@
 			</div>
 		</div>
 		<div v-if="pending" class="p-2 flex flex-col gap-2">
-			<div v-for="_ in ([].length = 20)" class="grid grid-cols-[3rem_1fr] rounded loading overflow-hidden">
-				<div class="w-full aspect-[2/3] bg-theme-color-300">&nbsp;</div>
-				<div>&nbsp;</div>
+			<div v-for="_ in ([].length = 4)" class="bg-theme-color-100 loading">
+				<h2 class="bg-theme-color-300 px-2 py-1 rounded">&nbsp;</h2>
+				<div class="p-2 grid gap-1">
+					<div class="rounded bg-theme-color-300 p-1">&nbsp;</div>
+					<div v-for="_ in ([].length = 5)" class="grid grid-cols-[3rem_1fr] rounded bg-theme-color-200 p-1">
+						<p class="w-full aspect-square">&nbsp;</p>
+						<p>&nbsp;</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="p-2 flex flex-col gap-2" v-else-if="Object.keys(data?.list || {}).length">
 			<slot v-for="(typeVal, typeKey) in parseObject(data.list)">
-				<h2 class="bg-theme-color-300 px-2 py-1 rounded">{{ filterSelectables[typeKey] }}</h2>
-				<div class="bg-theme-color-200 rounded grid grid-cols-[3rem_1fr] items-center overflow-hidden" v-for="each in fnTypeValFS(typeVal)" v-if="fnTypeValShow(typeVal, typeKey)">
-					<div class="w-full aspect-[2/3] bg-theme-color-300">
-						<img loading="lazy" :src="each.poster" v-if="each.poster" />
-						<IconNoimage class="w-full h-full" v-else />
-					</div>
-					<div class="p-2 grid items-center grid-cols-[1fr_auto]">
-						<div>
-							<p class="line-clamp-1">{{ each.title }}</p>
-							<p>Score: {{ each.score }}</p>
+				<div class="bg-theme-color-100 rounded [&~div#lorem]:hidden" v-if="filterSelected === 'none' || filterSelected === typeKey || filterSelected === 'favourite'">
+					<h2 class="bg-theme-color-300 px-2 py-1 rounded">{{ filterSelectables[typeKey] }}</h2>
+					<div class="p-2 grid gap-1">
+						<div class="grid gap-2 grid-cols-[3rem_1fr_3rem_4rem] rounded items-center justify-items-center font-semibold bg-theme-color-300 p-1">
+							<p>&nbsp;</p>
+							<p class="justify-self-start">Title</p>
+							<p>Score</p>
+							<p>Type</p>
 						</div>
-						<div class="grid gap-2">
-							<button class="rounded bg-theme-color-300 px-2 flex items-center gap-2 justify-center" @click="() => showListFn(each)"><IconEdit /> Edit</button>
-							<NuxtLink :href="`/${each.type}/id/${each.id}`" class="rounded bg-theme-color-300 px-2 flex items-center gap-2"><IconEye /> View</NuxtLink>
+						<div class="grid gap-2 grid-cols-[3rem_1fr_3rem_4rem] rounded items-center justify-items-center bg-theme-color-200 p-1 hover:bg-theme-color-300 transition-colors relative hover:shadow-sm" v-for="each in fnTypeValFS(typeVal)" v-if="filterSelected !== 'favourite' || (filterSelected === 'favourite' && typeVal.filter(e => e.favourite).length)">
+							<div class="w-full aspect-square rounded relative [&:hover+div]:block [&:hover>div]:grid cursor-pointer" @click="() => showListFn(each)">
+								<IconNoimage class="w-full h-full bg-theme-color-300 rounded" v-if="!each.poster" />
+								<img v-else loading="lazy" :src="each.poster" class="object-cover object-center w-full h-full rounded" />
+
+								<div class="hidden absolute bg-black bg-opacity-50 w-full h-full top-0 left-0 rounded justify-items-center items-center">
+									<IconEdit class="text-white text-3xl" />
+								</div>
+							</div>
+							<div class="hidden absolute w-[6rem] aspect-[2/3] top-1/2 -translate-y-1/2 right-0 rounded overflow-hidden bg-theme-color-300 shadow-md z-10">
+								<IconNoimage class="w-full h-full" v-if="!each.poster" />
+								<img v-else loading="lazy" :src="each.poster" class="object-cover object-center w-full h-full" />
+							</div>
+							<NuxtLink :href="`/${each.type}/id/${each.id}`" class="line-clamp-1 justify-self-start font-semibold">{{ each.title }}</NuxtLink>
+							<p>{{ each.score }}</p>
+							<p>{{ typeFix[each.type] || each.type }}</p>
+						</div>
+						<div class="bg-theme-color-200 p-2 rounded text-center" v-else>
+							Nothing matched your selected filter: <strong>{{ filterSelectables[filterSelected] }}</strong>
 						</div>
 					</div>
-				</div>
-				<div class="bg-theme-color-200 p-2 rounded text-center" v-else>
-					Nothing matched your selected filter: <strong>{{ filterSelectables[filterSelected] }}</strong>
 				</div>
 			</slot>
+			<div class="bg-theme-color-200 p-2 rounded text-center" id="lorem">
+				Nothing matched your selected filter: <strong>{{ filterSelectables[filterSelected] }}</strong>
+			</div>
 		</div>
-		<div class="p-2" v-else><div class="bg-theme-color-200 p-2 rounded text-center">You haven't added anything in your list</div></div>
+		<div class="p-2" v-else>
+			<div class="bg-theme-color-200 p-2 rounded text-center">You haven't added anything in your list</div>
+		</div>
 
 		<ListStatus v-if="!pending && showListStatus" @hideListStatus="hideListFn" :title="listData.title" :poster="listData.poster" :banner="listData.banner" :type="listData.type" :id="listData.id" :additionalData="listData.additionalData" @dataUpdated="dataUpdated" />
 	</main>
@@ -115,6 +137,8 @@
 	})
 	const filterSelected = ref('none')
 
+	const typeFix = ref({ movie: 'Movie', tv: 'TV', anime: 'Anime' })
+
 	const { pending, data, error } = await cLazyFetch('/api/list/all', { responseType: 'json' })
 
 	watchEffect(() => {
@@ -147,9 +171,5 @@
 		else if (sortSelected.value === 'lastModified') data.sort((a, b) => b.lastModified - a.lastModified)
 
 		return data
-	}
-
-	function fnTypeValShow(val, key) {
-		return filterSelected.value === 'none' || (filterSelected.value === 'favourite' && val.filter(e => e.favourite).length) || filterSelected.value === key
 	}
 </script>

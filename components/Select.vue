@@ -1,5 +1,5 @@
 <template>
-	<ul class="relative bg-theme-color-500 rounded px-2 py-0.5 select-none cursor-pointer w-fit inline-block" @click="() => (selectShowing = !selectShowing)" :class="disabled ? 'opacity-70' : ''" ref="ulEle">
+	<ul class="relative bg-theme-color-500 rounded px-2 py-0.5 select-none cursor-pointer w-fit inline-block z-[1]" @click="() => (selectShowing = !selectShowing)" :class="disabled ? 'opacity-70' : ''" ref="ulEle">
 		<li class="flex items-center gap-2">
 			{{ props.selectables[props.selected] || '' }}
 			<IconDown v-if="selectShowing" />

@@ -4,6 +4,8 @@
 			<h1 class="w-fit mx-auto px-4 pb-1 border-b-2 border-theme-color-500 text-lg font-semibold col-[1/-1]">Register</h1>
 			<label for="name">Name:</label>
 			<input type="text" id="name" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter your fullname" required minlength="4" v-model="nameInp" :disabled="sending" />
+			<label for="username">Username:</label>
+			<input type="text" id="username" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter a unique username" required minlength="4" v-model="usernameInp" @input="validateUsername" :disabled="sending" />
 			<label for="email">Email:</label>
 			<input type="email" id="email" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter your email address" required minlength="8" v-model="emailInp" :disabled="sending" />
 			<label for="pass">Password:</label>
@@ -31,6 +33,7 @@
 	const router = useRouter()
 
 	const nameInp = ref('')
+	const usernameInp = ref('')
 	const emailInp = ref('')
 	const passInp = ref('')
 	const re_passInp = ref('')
@@ -46,6 +49,7 @@
 				responseType: 'json',
 				body: {
 					name: nameInp.value,
+					username: usernameInp.value,
 					email: emailInp.value,
 					pass: passInp.value
 				}
@@ -54,6 +58,8 @@
 			if (got.status === 'alreadyRegistered') {
 				setNoti(`You already have an account with that email. Please login.`)
 				router.push({ path: '/login' })
+			} else if (got.status === 'usernameTaken') {
+				setNoti(`That username is taken. Try something else.`)
 			} else if (got.status === 'mailNotVerified') {
 				setNoti(`Please verify your email address.`)
 				router.push({ path: '/verify_email' })
@@ -69,6 +75,10 @@
 
 	function comparePass(e) {
 		if (passInp.value !== re_passInp.value) e.target.setCustomValidity("Passwords didn't match")
+		else e.target.setCustomValidity('')
+	}
+	function validateUsername(e) {
+		if (usernameInp.value.replace(/[a-z0-9_\.-]+/, '') !== '') e.target.setCustomValidity('Username can only include a-z, 0-9, underscore (_), fullstop (.) and hyphen (-) ')
 		else e.target.setCustomValidity('')
 	}
 </script>

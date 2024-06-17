@@ -5,9 +5,10 @@ const schema = {
 	properties: {
 		email: { type: 'string', minLength: 8 },
 		pass: { type: 'string', minLength: 6 },
-		name: { type: 'string', minLength: 4 }
+		name: { type: 'string', minLength: 4 },
+		username: { type: 'string', minLength: 4 }
 	},
-	required: ['email', 'pass', 'name'],
+	required: ['email', 'pass', 'name', 'username'],
 	additionalProperties: false
 }
 
@@ -21,12 +22,18 @@ export default defineEventHandler(async ev => {
 		let validation = req.validate(schema, req.body)
 		if (validation.error) return res.setStatus(400).send(validation)
 
-		const got = await mongo.client.db('MTAlist').collection('Users').findOne({ email: req.body.email })
+		const got = await mongo.client
+			.db('MTAlist')
+			.collection('Users')
+			.find({ $or: [{ email: req.body.email }, { username: req.body.username }] })
+			.toArray()
 
-		if (got) {
-			if (!got.mailVerified) return res.send({ status: 'mailNotVerified' })
+		if (got.find(el => el.email === req.body.email)) {
+			if (!got.find(el => el.email === req.body.email).mailVerified) return res.send({ status: 'mailNotVerified' })
 			return res.send({ status: 'alreadyRegistered' })
 		}
+
+		if (got.find(el => el.username === req.body.username)) return res.send({ status: 'usernameTaken' })
 
 		const _id = new mongo.ObjectId().toString()
 		const credentialsChangedAt = Date.now()
@@ -36,6 +43,7 @@ export default defineEventHandler(async ev => {
 			.insertOne({
 				_id,
 				name: req.body.name,
+				username: req.body.username,
 				pass: hashSync(req.body.pass, 10),
 				email: req.body.email,
 				credentialsChangedAt,

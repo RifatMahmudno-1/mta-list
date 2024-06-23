@@ -6,9 +6,10 @@ async function validation(to) {
 	if (!tokenP || !tokenS || (stay !== 'Yes' && stay !== 'No')) return false
 	try {
 		const msg = (await aesDecrypt(tokenP, import.meta.env.VITE_CookiePublicKey)).split('::')
-		if (msg.length > 2 || msg[0] !== 'MTAlist' || (msg[1] && msg[1] !== '1')) return false
+		if ((msg.length !== 2 && msg.length !== 3) || msg[0] !== 'MTAlist' || msg[1].length < 4 || (msg[2] && msg[2] !== '1')) return false
 		to.meta.user = true
-		to.meta.admin = msg[1] === '1' ? true : false
+		to.meta.username = msg[1]
+		to.meta.admin = msg[2] === '1' ? true : false
 		return true
 	} catch {
 		return false

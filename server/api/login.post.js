@@ -32,7 +32,7 @@ export default defineEventHandler(async ev => {
 				path: '/',
 				maxAge: req.body.stay ? 2592000 : null
 			})
-			.setCookie('TokenP', await aesEncrypt('MTAlist' + (got.admin ? '::1' : ''), process.env.VITE_CookiePublicKey), {
+			.setCookie('TokenP', await aesEncrypt(`MTAlist::${got.username}${got.admin ? '::1' : ''}`, process.env.VITE_CookiePublicKey), {
 				path: '/',
 				maxAge: req.body.stay ? 2592000 : null
 			})

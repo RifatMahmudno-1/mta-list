@@ -78,7 +78,7 @@
 		else e.target.setCustomValidity('')
 	}
 	function validateUsername(e) {
-		if (usernameInp.value.replace(/[a-z0-9_\.-]+/, '') !== '') e.target.setCustomValidity('Username can only include a-z, 0-9, underscore (_), fullstop (.) and hyphen (-) ')
+		if (!usernameInp.value.match(/^[a-z0-9_.-]+$/)) e.target.setCustomValidity('Username can only include a-z, 0-9, underscore (_), fullstop (.) and hyphen (-) ')
 		else e.target.setCustomValidity('')
 	}
 </script>

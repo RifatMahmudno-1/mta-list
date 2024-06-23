@@ -6,7 +6,7 @@ const schema = {
 		email: { type: 'string', minLength: 8 },
 		pass: { type: 'string', minLength: 6 },
 		name: { type: 'string', minLength: 4 },
-		username: { type: 'string', minLength: 4 }
+		username: { type: 'string', minLength: 4, pattern: '^[a-z0-9_.-]+$' }
 	},
 	required: ['email', 'pass', 'name', 'username'],
 	additionalProperties: false

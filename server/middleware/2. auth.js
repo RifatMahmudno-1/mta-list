@@ -1,11 +1,10 @@
 const guardedRoutes = ['/api/list/']
+const guardedRoutesExactExceptions = ['/api/list/other_user']
 
 export default defineEventHandler(async ev => {
 	const { pathname } = getRequestURL(ev)
 
-	/**
-	 * Only check auth if guarded route
-	 */
+	if (guardedRoutesExactExceptions.find(el => el === pathname)) return
 	if (!guardedRoutes.find(el => pathname.startsWith(el))) return
 
 	const { req, res } = modifyH3(ev)

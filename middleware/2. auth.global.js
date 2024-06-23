@@ -26,7 +26,7 @@ function removeCookie() {
 	if (stay.value) stay.value = null
 }
 
-const guardedRoutes = ['/list']
+const guardedRoutesExact = ['/list']
 
 export default defineNuxtRouteMiddleware(async to => {
 	if (!to.matched.length) return
@@ -34,7 +34,8 @@ export default defineNuxtRouteMiddleware(async to => {
 	if (['/login', '/register', '/unauthorized', '/verify_email', '/reset_password'].includes(to.path)) return removeCookie()
 
 	const isValid = await validation(to)
-	if (!isValid) removeCookie()
-
-	if (!isValid && guardedRoutes.find(el => to.path.startsWith(el))) return navigateTo('/unauthorized')
+	if (!isValid) {
+		removeCookie()
+		if (guardedRoutesExact.find(el => to.path === el)) return navigateTo('/unauthorized')
+	}
 })

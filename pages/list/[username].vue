@@ -1,16 +1,22 @@
 <template>
 	<main class="px-2">
-		<div class="flex justify-between bg-theme-color-300 p-2 rounded gap-4">
-			<div class="flex items-center gap-2">
-				<span>Sort:</span>
-				<Select :selectables="sortSelectables" :selected="sortSelected" @select="e => (sortSelected = e)" v-if="!pending" />
-				<span class="!bg-theme-color-500 loading w-28 rounded" v-else>&nbsp;</span>
+		<div class="grid grid-cols-[1fr_auto] gap-4 bg-theme-color-300 p-2 rounded">
+			<div class="flex gap-4">
+				<div class="flex items-center gap-2">
+					<span>Sort:</span>
+					<Select :selectables="sortSelectables" :selected="sortSelected" @select="e => (sortSelected = e)" v-if="!pending" />
+					<span class="!bg-theme-color-500 loading w-28 rounded" v-else>&nbsp;</span>
+				</div>
+				<div class="flex items-center gap-2">
+					<span>Filter:</span>
+					<Select :selectables="filterSelectables" :selected="filterSelected" @select="e => (filterSelected = e)" position="right" v-if="!pending" />
+					<span class="!bg-theme-color-500 loading w-28 rounded" v-else>&nbsp;</span>
+				</div>
 			</div>
-			<div class="flex items-center gap-2">
-				<span>Filter:</span>
-				<Select :selectables="filterSelectables" :selected="filterSelected" @select="e => (filterSelected = e)" position="right" v-if="!pending" />
-				<span class="!bg-theme-color-500 loading w-28 rounded" v-else>&nbsp;</span>
-			</div>
+			<button class="rounded flex items-center gap-2 px-2 py-1 bg-theme-color-500" @click="copyLinkFn">
+				<span>Share</span>
+				<IconShare />
+			</button>
 		</div>
 		<div v-if="pending" class="p-2 flex flex-col gap-2">
 			<div v-for="_ in ([].length = 4)" class="bg-theme-color-100 loading">
@@ -139,5 +145,15 @@
 		else if (sortSelected.value === 'lastModified') data.sort((a, b) => b.lastModified - a.lastModified)
 
 		return data
+	}
+
+	function copyLinkFn() {
+		const url = useRequestURL()
+		try {
+			globalThis.navigator.clipboard.writeText(url.origin + '/list/' + route.params.username)
+			setNoti('Link copied to your clipboard.')
+		} catch {
+			setNoti('Share this link: ' + url.origin + '/list/' + route.params.username)
+		}
 	}
 </script>

@@ -1,6 +1,9 @@
 export default defineEventHandler(async ev => {
 	const url = getRequestURL(ev)
-	if (url.pathname === '/' && url.searchParams.get('csr') === '1') ev.context.nuxt = { noSSR: true }
+	if (url.pathname === '/' && url.searchParams.get('csr') === '1') {
+		if (ev.context.nuxt?.constructor === Object) ev.context.nuxt.noSSR = true
+		else ev.context.nuxt = { noSSR: true }
+	}
 
 	/**
 	 * try to connect to server on any request made to any route starting with /api

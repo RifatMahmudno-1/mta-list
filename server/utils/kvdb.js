@@ -1,7 +1,8 @@
 import { readFileSync, writeFileSync, statSync, mkdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
+import { tmpdir } from 'node:os'
 
-const dir = useRuntimeConfig().kvdbDir
+const dir = join(tmpdir(), 'MTA_List', 'KVDB')
 export default class {
 	/**
 	 * @param {String} key

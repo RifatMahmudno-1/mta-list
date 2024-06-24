@@ -6,16 +6,6 @@ export default defineNuxtConfig({
 	css: ['~/assets/css/tailwind.css'],
 	tailwindcss: { editorSupport: true },
 	vite: { build: { assetsInlineLimit: 0 } },
-	$production: {
-		runtimeConfig: {
-			kvdbDir: '/tmp/kvdb'
-		}
-	},
-	$development: {
-		runtimeConfig: {
-			kvdbDir: './tmp/kvdb'
-		}
-	},
 	app: {
 		head: {
 			title: 'MTA List',

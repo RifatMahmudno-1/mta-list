@@ -19,5 +19,6 @@ export default defineNuxtConfig({
 			link: [{ type: 'image/png', rel: 'icon', href: '/logos/logo_256.png' }],
 			script: [{ src: 'https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js' }]
 		}
-	}
+	},
+	router: { options: { sensitive: true } }
 })

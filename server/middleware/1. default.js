@@ -1,4 +1,6 @@
 export default defineEventHandler(async ev => {
+	if (ev.path !== '/' && ev.path.endsWith('/')) return sendRedirect(ev, ev.path.slice(0, -1))
+
 	const url = getRequestURL(ev)
 	if (url.pathname === '/' && url.searchParams.get('csr') === '1') {
 		if (ev.context.nuxt?.constructor === Object) ev.context.nuxt.noSSR = true

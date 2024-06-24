@@ -1,7 +1,10 @@
 export default defineEventHandler(async ev => {
+	// remove trailing slash for GET requests
 	if (ev.method === 'GET' && ev.path !== '/' && ev.path.endsWith('/')) return sendRedirect(ev, ev.path.slice(0, -1))
 
 	const url = getRequestURL(ev)
+
+	// client side rendering, mainly for PWA
 	if (url.pathname === '/' && url.searchParams.get('csr') === '1') {
 		if (ev.context.nuxt?.constructor === Object) ev.context.nuxt.noSSR = true
 		else ev.context.nuxt = { noSSR: true }
@@ -15,6 +18,10 @@ export default defineEventHandler(async ev => {
 		if (mongo.connected) return
 
 		await mongo.init()
+
+		// don't wait and ignore error
+		Promise.all(mongo.client.db('MTAlist').collection('Users').createIndex({ email: 1 }), mongo.client.db('MTAlist').collection('Users').createIndex({ username: 1, mailVerified: 1 }))
+
 		if (!mongo.connected) {
 			setResponseStatus(ev, 500)
 			return send(ev)

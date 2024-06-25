@@ -1,4 +1,4 @@
-const guardedRoutes = ['/api/list/']
+const guardedRoutes = ['/api/list/', '/api/profile/']
 const guardedRoutesExactExceptions = ['/api/list/other_user']
 
 export default defineEventHandler(async ev => {

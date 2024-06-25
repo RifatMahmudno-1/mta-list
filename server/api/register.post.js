@@ -47,7 +47,8 @@ export default defineEventHandler(async ev => {
 				pass: hashSync(req.body.pass, 10),
 				email: req.body.email,
 				credentialsChangedAt,
-				mailVerified: false
+				mailVerified: false,
+				modifiedAt: null
 			})
 
 		return res.send({ status: 'success' })

@@ -21,6 +21,7 @@
 
 			<div class="flex gap-2">
 				<NuxtLink v-if="route.meta.user" href="/list" class="bg-theme-color-500 px-2 py-0.5 flex items-center rounded"> <IconList /> My list </NuxtLink>
+				<NuxtLink v-if="route.meta.user" href="/profile" class="bg-theme-color-500 px-2 py-0.5 flex items-center rounded"> <IconProfile /></NuxtLink>
 				<NuxtLink href="/login" class="bg-theme-color-500 px-2 py-0.5 flex items-center rounded"> <IconLogin :class="route.meta.user ? 'rotate-180' : ''" /> {{ route.meta.user ? '' : 'Login' }} </NuxtLink>
 			</div>
 		</div>

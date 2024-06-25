@@ -26,7 +26,7 @@ function removeCookie() {
 	if (stay.value) stay.value = null
 }
 
-const guardedRoutesExact = ['/list']
+const guardedRoutesExact = ['/list', '/profile']
 
 export default defineNuxtRouteMiddleware(async to => {
 	if (!to.matched.length) return

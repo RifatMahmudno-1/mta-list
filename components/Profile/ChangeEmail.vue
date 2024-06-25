@@ -3,7 +3,7 @@
 		<h2 class="text-lg font-semibold border-b-2 border-theme-color-500 px-2 py-1 w-fit mx-auto mb-2">Email</h2>
 		<div class="grid grid-cols-[auto_1fr] gap-2">
 			<label>Current Email:</label>
-			<input type="email" :value="data?.email || 'Loading...'" disabled class="w-full rounded focus:shadow-md px-1 bg-white" />
+			<input type="email" :value="pending ? 'Loading...' : data.email" disabled class="w-full rounded focus:shadow-md px-1 bg-white" />
 
 			<label for="new_email" v-if="editing">New Email:</label>
 			<input type="email" id="new_email" required minlength="8" class="w-full rounded focus:shadow-md px-1 bg-white" placeholder="Enter new email" :disabled="sending || stat !== 1" v-model="new_email" v-if="editing" />

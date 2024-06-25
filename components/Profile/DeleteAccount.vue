@@ -38,14 +38,14 @@
 		emit('toggleSending')
 
 		try {
-			const got = await $fetch('/api/profile/data', { method: 'POST', responseType: 'json', body: { pass: pass.value } })
+			const got = await $fetch('/api/profile/delete', { method: 'DELETE', responseType: 'json', body: { pass: pass.value } })
 			if (got.status === 'wrongPass') setNoti('Wrong password provided.')
 			else if (got.status === 'success') {
 				setNoti('We will miss you.')
 				router.push('/')
 			} else throw 'Invalid Response'
+			emit('toggleSending')
 		} catch (e) {
-			console.log(e)
 			showError(e)
 		}
 	}

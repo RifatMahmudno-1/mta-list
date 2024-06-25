@@ -42,10 +42,10 @@
 		}
 
 		try {
-			const got = await $fetch('/api/profile/data', {
+			const got = await $fetch('/api/profile/name_username', {
 				body: {
-					name: data.value.name === name.value ? undefined : name.value,
-					username: data.value.username === username.value ? undefined : username.value,
+					name: name.value,
+					username: username.value,
 					pass: pass.value
 				},
 				method: 'POST',

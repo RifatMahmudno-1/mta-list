@@ -15,7 +15,7 @@ const schema = {
 			properties: {
 				email: { type: 'string', minLength: 8 },
 				pass: { type: 'string', minLength: 6 },
-				code: { type: 'string', minLength: 16 }
+				code: { type: 'string', minLength: 16, maxLength: 16 }
 			},
 			required: ['email', 'pass', 'code'],
 			additionalProperties: false

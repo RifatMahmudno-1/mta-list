@@ -3,6 +3,7 @@
 		<h1 class="text-2xl font-semibold border-b-2 border-theme-color-500 px-2 py-1 w-fit">User Profile</h1>
 
 		<ProfileNameUsername @toggle-sending="sending = !sending" @data="updateData" :sending="sending" :data="data" :pending="pending" />
+		<ProfileChangeEmail @toggle-sending="sending = !sending" @data="updateData" :sending="sending" :data="data" :pending="pending" />
 		<ProfileChangePass @toggle-sending="sending = !sending" @data="updateData" :sending="sending" :pending="pending" />
 		<p v-if="!pending && data?.modifiedAt" class="text-sm">Last modified at: {{ parseDate(data.modifiedAt) }}</p>
 		<ProfileDeleteAccount @toggle-sending="sending = !sending" :sending="sending" :pending="pending" />

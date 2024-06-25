@@ -5,7 +5,7 @@
 			<label for="n_pass">New password:</label>
 			<input type="password" id="n_pass" required minlength="6" class="w-full rounded focus:shadow-md px-1 bg-white" placeholder="Enter new password" :disabled="sending || !editing" v-model="new_pass" />
 			<label for="re_n_pass">&nbsp;</label>
-			<input type="password" id="re_n_pass" required minlength="6" class="w-full rounded focus:shadow-md px-1 bg-white" placeholder="Retype that new password" :disabled="sending || !editing" v-model="re_new_pass" />
+			<input type="password" id="re_n_pass" required minlength="6" class="w-full rounded focus:shadow-md px-1 bg-white" placeholder="Retype that new password" :disabled="sending || !editing" v-model="re_new_pass" @change="comparePass" />
 			<label for="pass_c_p" v-if="editing">Current Password:</label>
 			<input type="password" id="pass_c_p" required minlength="6" class="w-full rounded focus:shadow-md px-1 bg-white" placeholder="Enter your current password" :disabled="sending" v-model="pass" v-if="editing" />
 			<div class="col-[1/-1] flex gap-2 items-center m-auto">
@@ -32,7 +32,7 @@
 		emit('toggleSending')
 
 		try {
-			const got = await $fetch('/api/profile/data', {
+			const got = await $fetch('/api/profile/password', {
 				body: {
 					new_pass: new_pass.value,
 					pass: pass.value

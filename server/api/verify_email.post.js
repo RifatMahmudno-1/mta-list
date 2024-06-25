@@ -32,7 +32,7 @@ export default defineEventHandler(async ev => {
 			const time = Date.now()
 			await mongo.client.db('MTAlist').collection('MailVerifyCodes').updateOne({ _id: got._id }, { $set: { code, time } }, { upsert: true })
 
-			await sendMail({ to: req.body.email, subject: 'Reset password', text: `Your new code verify your email is: ${code}\nGo to ${req.url.origin}/verify_email and enter this code to verify.\nThis code will expire after 10 minutes.` })
+			await sendMail({ to: req.body.email, subject: 'Verify Email', text: `Your new code verify your email is: ${code}\nGo to ${req.url.origin}/verify_email and enter this code to verify.\nThis code will expire after 10 minutes.` })
 
 			return res.send({ status: 'notVerified', refreshed: true })
 		}

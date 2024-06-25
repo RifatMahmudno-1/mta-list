@@ -13,7 +13,7 @@
 
 			<p v-if="editing && stat === 2" class="text-sm col-[1/-1]">Enter the verification code sent to your new email address.</p>
 			<label for="code" v-if="editing && stat === 2">Verification Code:</label>
-			<input type="text" id="code" required minlength="8" class="w-full rounded focus:shadow-md px-1 bg-white" placeholder="Enter new email" :disabled="sending" v-model="code" v-if="editing && stat === 2" />
+			<input type="text" id="code" required minlength="8" class="w-full rounded focus:shadow-md px-1 bg-white" placeholder="Enter verification code" :disabled="sending" v-model="code" v-if="editing && stat === 2" />
 
 			<div class="col-[1/-1] flex gap-2 items-center m-auto">
 				<button type="button" class="bg-theme-color-500 px-2 rounded shadow-sm hover:shadow-md" @click="() => (editing = true)" v-if="!editing" :disabled="pending">Change</button>

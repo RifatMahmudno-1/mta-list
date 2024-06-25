@@ -11,6 +11,17 @@
 </template>
 
 <script setup>
+	useHead({
+		title: 'Profile',
+		meta: [
+			{ name: 'description', content: 'Edit your MTA List profile and account here.' },
+			{ property: 'og:title', content: 'Profile' },
+			{ property: 'og:description', content: 'Edit your MTA List profile and account here.' },
+			{ name: 'twitter:title', content: 'Profile' },
+			{ name: 'twitter:description', content: 'Edit your MTA List profile and account here.' }
+		]
+	})
+
 	const sending = ref(false)
 
 	const { data, pending, error } = await cLazyFetch('/api/profile/data', { method: 'GET' })

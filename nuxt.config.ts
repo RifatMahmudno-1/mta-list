@@ -16,8 +16,7 @@ export default defineNuxtConfig({
 				{ name: 'creator', content: 'Rifat Mahmud' },
 				{ property: 'og:type', content: 'website' }
 			],
-			link: [{ type: 'image/png', rel: 'icon', href: '/logos/logo_256.png' }],
-			script: [{ src: 'https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js' }]
+			link: [{ type: 'image/png', rel: 'icon', href: '/logos/logo_256.png' }]
 		}
 	},
 	router: { options: { sensitive: true } }

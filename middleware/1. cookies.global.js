@@ -5,7 +5,7 @@ export default defineNuxtRouteMiddleware(async () => {
 	for (let i = 0; i < cookies.length; i++) {
 		const cookie = useCookie(cookies[i], { path: '/', ...(maxAge ? { maxAge } : {}) })
 		const oldValue = cookie.value
-		if (oldValue !== undefined) continue
+		if (oldValue === undefined) continue
 		cookie.value = ''
 		await nextTick()
 		cookie.value = oldValue

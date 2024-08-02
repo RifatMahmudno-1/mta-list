@@ -37,8 +37,8 @@ export default defineNuxtConfig({
 			name: 'MTA List',
 			short_name: 'MTA List',
 			description: 'A beautiful and modern website to keep track of Movies, TV shows & seasons and animes.',
-			theme_color: '#fcd34d',
-			background_color: '#fef3c7',
+			theme_color: '#ffffff',
+			background_color: '#ffffff',
 			id: '/',
 			icons: [
 				{ src: '/logos/logo_72.png', sizes: '72x72', type: 'image/png' },

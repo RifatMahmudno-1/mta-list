@@ -16,11 +16,11 @@
 				</button>
 			</form>
 			<div v-else class="justify-self-center flex gap-4">
-				<NuxtLink class="bg-theme-color-500 px-2 py-0.5 rounded shadow-sm" v-for="(val, key) in selectables" :href="'/' + key">{{ val }}</NuxtLink>
+				<NuxtLink class="bg-theme-color-500 px-2 py-0.5 rounded shadow-sm hover:shadow-md transition-shadow" v-for="(val, key) in selectables" :href="'/' + key">{{ val }}</NuxtLink>
 			</div>
 
-			<div class="flex gap-2">
-				<NuxtLink v-if="route.meta.user" href="/list" class="bg-theme-color-500 px-2 py-0.5 flex items-center rounded"> <IconList /> My list </NuxtLink>
+			<div class="flex gap-2 [&>a:hover]:shadow-md [&>a]:transition-shadow h-full">
+				<NuxtLink v-if="route.meta.user" href="/list" class="bg-theme-color-500 px-2 py-0.5 flex items-center rounded"> <IconList /><span class="max-[500px]:hidden">My list</span></NuxtLink>
 				<NuxtLink v-if="route.meta.user" href="/profile" class="bg-theme-color-500 px-2 py-0.5 flex items-center rounded"> <IconProfile /></NuxtLink>
 				<NuxtLink href="/login" class="bg-theme-color-500 px-2 py-0.5 flex items-center rounded"> <IconLogin :class="route.meta.user ? 'rotate-180' : ''" /> {{ route.meta.user ? '' : 'Login' }} </NuxtLink>
 			</div>

@@ -3,7 +3,7 @@ export default defineNuxtConfig({
 	devtools: { enabled: false },
 	typescript: { shim: true },
 	modules: ['@nuxtjs/tailwindcss'],
-	css: ['~/assets/css/tailwind.css'],
+	css: ['~/assets/css/global.css'],
 	tailwindcss: { editorSupport: true },
 	vite: { build: { assetsInlineLimit: 0 } },
 	app: {

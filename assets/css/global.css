@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+	html {
+		@apply max-[480px]:text-sm;
+	}
+
+	body {
+		@apply overscroll-none;
+	}
+
 	svg {
 		@apply inline-block align-middle;
 	}

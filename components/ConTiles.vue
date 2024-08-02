@@ -4,15 +4,15 @@
 			<h2 class="font-semibold text-lg">{{ props.title }}</h2>
 			<NuxtLink v-if="props.compact" :href="`/${type}/${props.title.toLowerCase()}`" class="bg-theme-color-500 rounded px-2 flex items-center">More <IconRight /></NuxtLink>
 		</div>
-		<div class="p-4 flex flex-wrap gap-x-2 gap-y-4 justify-evenly rounded">
+		<div class="p-4 flex flex-wrap max-[400px]:gap-2 gap-4 justify-evenly rounded">
 			<!-- pending -->
-			<div v-if="pending" v-for="e in ([].length = props.compact ? 10 : 20)" class="w-[10rem]">
+			<div v-if="pending" v-for="e in ([].length = props.compact ? 10 : 20)" class="w-[10rem] max-[550px]:w-[8rem] max-[400px]:w-[7rem] max-[350px]:w-[6rem]">
 				<div class="aspect-[2/3] rounded-lg mb-1 overflow-hidden loading">&nbsp;</div>
 				<p class="px-2 loading w-[8rem] mx-auto rounded">&nbsp;</p>
 			</div>
 
 			<!-- loaded -->
-			<div class="w-[10rem] relative [&:hover_.olwneoiu]:grid [&:hover_.ireuhghug]:block" v-else-if="data?.results?.length" v-for="each in props.compact ? data.results?.slice(0, 10) : data.results" :key="each.id">
+			<div class="w-[10rem] max-[550px]:w-[8rem] max-[400px]:w-[7rem] max-[350px]:w-[6rem] relative [&:hover_.olwneoiu]:grid [&:hover_.ireuhghug]:block" v-else-if="data?.results?.length" v-for="each in props.compact ? data.results?.slice(0, 10) : data.results" :key="each.id">
 				<NuxtLink :href="`/${type}/id/${each.id}`">
 					<div class="aspect-[2/3] rounded-lg mb-1 overflow-hidden bg-theme-color-200 relative">
 						<img v-if="each.poster" :src="each.poster" loading="lazy" class="w-full h-full object-cover object-center" />

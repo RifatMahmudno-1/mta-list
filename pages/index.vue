@@ -13,50 +13,38 @@
 		</header>
 
 		<div theme="movie" class="min-h-[20rem] grid content-center text-xl justify-items-center bg-theme-color-200 gap-4 px-4 rounded">
-			<h2 class="text-2xl border-b-2 px-2 border-theme-color-400">Movies</h2>
-			<div class="grid justify-items-center gap-2">
-				<div class="flex gap-2">
-					<NuxtLink href="/movie/trending" class="bg-theme-color-300 px-2 rounded">Trending Movies</NuxtLink>
-					<NuxtLink href="/movie/top" class="bg-theme-color-300 px-2 rounded">Top Movies</NuxtLink>
-					<NuxtLink href="/movie/popular" class="bg-theme-color-300 px-2 rounded">Popular Movies</NuxtLink>
-				</div>
-				<div class="flex gap-2">
-					<NuxtLink href="/movie/airing" class="bg-theme-color-300 px-2 rounded">Airing Movies</NuxtLink>
-					<NuxtLink href="/movie/upcoming" class="bg-theme-color-300 px-2 rounded">Upcoming Movies</NuxtLink>
-				</div>
+			<h2 class="text-2xl border-b-2 px-2 border-theme-color-400 font-semibold">Movies</h2>
+			<div class="flex gap-2 flex-wrap justify-center max-w-[480px] [&>a:hover]:shadow-md shadow-sm [&>a]:transition-shadow">
+				<NuxtLink href="/movie/trending" class="bg-theme-color-300 px-2 py-0.5 rounded">Trending Movies</NuxtLink>
+				<NuxtLink href="/movie/top" class="bg-theme-color-300 px-2 py-0.5 rounded">Top Movies</NuxtLink>
+				<NuxtLink href="/movie/popular" class="bg-theme-color-300 px-2 py-0.5 rounded">Popular Movies</NuxtLink>
+				<NuxtLink href="/movie/airing" class="bg-theme-color-300 px-2 py-0.5 rounded">Airing Movies</NuxtLink>
+				<NuxtLink href="/movie/upcoming" class="bg-theme-color-300 px-2 py-0.5 rounded">Upcoming Movies</NuxtLink>
 			</div>
-			<NuxtLink href="/movie" class="bg-theme-color-400 px-8 rounded">Browse All</NuxtLink>
+			<NuxtLink href="/movie" class="bg-theme-color-400 px-8 py-0.5 rounded hover:shadow-md shadow-sm transition-shadow">Browse All</NuxtLink>
 		</div>
 
 		<div theme="tv" class="min-h-[20rem] grid content-center text-xl justify-items-center bg-theme-color-200 gap-4 px-4 rounded">
-			<h2 class="text-2xl border-b-2 px-2 border-theme-color-400">TV Shows and Seasons</h2>
-			<div class="grid justify-items-center gap-2">
-				<div class="flex gap-2">
-					<NuxtLink href="/tv/trending" class="bg-theme-color-300 px-2 rounded">Trending Shows</NuxtLink>
-					<NuxtLink href="/tv/top" class="bg-theme-color-300 px-2 rounded">Top Shows</NuxtLink>
-				</div>
-				<div class="flex gap-2">
-					<NuxtLink href="/tv/popular" class="bg-theme-color-300 px-2 rounded">Popular Shows</NuxtLink>
-					<NuxtLink href="/tv/airing" class="bg-theme-color-300 px-2 rounded">Currently Airing Shows</NuxtLink>
-				</div>
+			<h2 class="text-2xl border-b-2 px-2 border-theme-color-400 font-semibold">TV Shows and Seasons</h2>
+			<div class="flex gap-2 flex-wrap justify-center max-w-[480px] [&>a:hover]:shadow-md shadow-sm [&>a]:transition-shadow">
+				<NuxtLink href="/tv/trending" class="bg-theme-color-300 px-2 py-0.5 rounded">Trending Shows</NuxtLink>
+				<NuxtLink href="/tv/top" class="bg-theme-color-300 px-2 py-0.5 rounded">Top Shows</NuxtLink>
+				<NuxtLink href="/tv/popular" class="bg-theme-color-300 px-2 py-0.5 rounded">Popular Shows</NuxtLink>
+				<NuxtLink href="/tv/airing" class="bg-theme-color-300 px-2 py-0.5 rounded">Currently Airing Shows</NuxtLink>
 			</div>
-			<NuxtLink href="/tv" class="bg-theme-color-400 px-8 rounded">Browse All</NuxtLink>
+			<NuxtLink href="/tv" class="bg-theme-color-400 px-8 py-0.5 rounded hover:shadow-md shadow-sm transition-shadow">Browse All</NuxtLink>
 		</div>
 
 		<div theme="anime" class="min-h-[20rem] grid content-center text-xl justify-items-center bg-theme-color-200 gap-4 px-4 rounded">
-			<h2 class="text-2xl border-b-2 px-2 border-theme-color-400">Anime</h2>
-			<div class="grid justify-items-center gap-2">
-				<div class="flex gap-2">
-					<NuxtLink href="/anime/trending" class="bg-theme-color-300 px-2 rounded">Trending Anime</NuxtLink>
-					<NuxtLink href="/anime/top" class="bg-theme-color-300 px-2 rounded">Top Anime</NuxtLink>
-					<NuxtLink href="/anime/popular" class="bg-theme-color-300 px-2 rounded">Popular Anime</NuxtLink>
-				</div>
-				<div class="flex gap-2">
-					<NuxtLink href="/anime/airing" class="bg-theme-color-300 px-2 rounded">Airing Anime</NuxtLink>
-					<NuxtLink href="/anime/upcoming" class="bg-theme-color-300 px-2 rounded">Upcoming Anime</NuxtLink>
-				</div>
+			<h2 class="text-2xl border-b-2 px-2 border-theme-color-400 font-semibold">Anime</h2>
+			<div class="flex gap-2 flex-wrap justify-center max-w-[480px] [&>a:hover]:shadow-md shadow-sm [&>a]:transition-shadow">
+				<NuxtLink href="/anime/trending" class="bg-theme-color-300 px-2 py-0.5 rounded">Trending Anime</NuxtLink>
+				<NuxtLink href="/anime/top" class="bg-theme-color-300 px-2 py-0.5 rounded">Top Anime</NuxtLink>
+				<NuxtLink href="/anime/popular" class="bg-theme-color-300 px-2 py-0.5 rounded">Popular Anime</NuxtLink>
+				<NuxtLink href="/anime/airing" class="bg-theme-color-300 px-2 py-0.5 rounded">Airing Anime</NuxtLink>
+				<NuxtLink href="/anime/upcoming" class="bg-theme-color-300 px-2 py-0.5 rounded">Upcoming Anime</NuxtLink>
 			</div>
-			<NuxtLink href="/anime" class="bg-theme-color-400 px-8 rounded">Browse All</NuxtLink>
+			<NuxtLink href="/anime" class="bg-theme-color-400 px-8 py-0.5 rounded hover:shadow-md shadow-sm transition-shadow">Browse All</NuxtLink>
 		</div>
 	</main>
 </template>

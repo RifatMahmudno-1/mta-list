@@ -1,4 +1,6 @@
 <template>
+	<NuxtPwaManifest />
+
 	<div class="grid grid-rows-[auto_1fr_auto] min-h-[100dvh] gap-2">
 		<Navigation />
 		<NuxtPage class="cont" />

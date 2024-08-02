@@ -4,8 +4,8 @@
 			<div class="w-full aspect-[3/1] bg-theme-color-50">
 				<img v-if="!pending && data.banner" :src="data.banner" class="w-full h-full object-cover object-center" />
 			</div>
-			<div class="grid gap-4 px-8 grid-cols-[auto_1fr] bg-theme-color-300 pb-2">
-				<div class="w-[10rem] aspect-[2/1.5] relative">
+			<div class="grid gap-4 px-8 grid-cols-[auto_1fr] max-[700px]:grid-cols-1 bg-theme-color-300 pb-2">
+				<div class="w-[10rem] max-[700px]:w-[8rem] max-[400px]:w-[6rem] aspect-[2/1.5] relative">
 					<div class="w-full translate-y-[-50%] absolute aspect-[2/3] rounded overflow-hidden bg-theme-color-200" v-if="!pending">
 						<img v-if="data.poster" :src="data.poster" class="w-full h-full object-cover object-center" />
 						<IconNoimage class="w-full h-full" v-else />
@@ -25,16 +25,16 @@
 			</div>
 		</div>
 
-		<div class="grid grid-cols-[auto_1fr] gap-4 m-4">
+		<div class="grid grid-cols-[10rem_1fr] max-[450px]:grid-cols-1 gap-4 m-4">
 			<!-- left column -->
-			<div class="flex flex-col gap-2 [&>*:not(button)]:bg-theme-color-200 [&>*:not(button)]:px-2 [&>*:not(button)]:py-1 [&>*]:rounded min-w-[10rem]" v-if="!pending">
+			<div class="flex flex-col gap-2 [&>*:not(button)]:bg-theme-color-200 [&>*:not(button)]:px-2 [&>*:not(button)]:py-1 [&>*]:rounded" v-if="!pending">
 				<button class="bg-theme-color-500 py-1 px-2 flex items-center justify-center" @click="fnShowListStatus">
 					<IconList />
 					List Status
 				</button>
-				<div v-if="data?.genres?.length">
+				<div v-if="data?.genres?.length" class="flex flex-col gap-1">
 					<p>Genres:</p>
-					<NuxtLink :href="`/${route.params.type}/genre/${encodeURIComponent(e)}`" class="block ml-4 bg-theme-color-50 px-2 rounded mb-1" v-for="e in data.genres">{{ e }}</NuxtLink>
+					<NuxtLink :href="`/${route.params.type}/genre/${encodeURIComponent(e)}`" class="bg-theme-color-50 px-2 rounded" v-for="e in data.genres">{{ e }}</NuxtLink>
 				</div>
 				<p>
 					Popularity: <strong>{{ data.popularity }}</strong>
@@ -43,7 +43,7 @@
 					Avarage Score: <strong>{{ data.averageScore }}</strong>
 				</p>
 			</div>
-			<div class="flex flex-col gap-2 [&>*:not(button)]:bg-theme-color-200 [&>*:not(button)]:px-2 [&>*:not(button)]:py-1 [&>*]:rounded min-w-[10rem]" v-else>
+			<div class="flex flex-col gap-2 [&>*:not(button)]:bg-theme-color-200 [&>*:not(button)]:px-2 [&>*:not(button)]:py-1 [&>*]:rounded" v-else>
 				<button class="!bg-theme-color-500 py-1 px-2 flex items-center justify-center loading">&nbsp;</button>
 				<div class="loading h-[8rem]">&nbsp;</div>
 				<p class="w-full loading">&nbsp;</p>
@@ -55,7 +55,7 @@
 				<!-- Characters -->
 				<div class="bg-theme-color-50 rounded" v-if="data?.characters?.length">
 					<h2 class="text-center text-lg bg-theme-color-300 rounded">Characters</h2>
-					<div class="gap-2 grid grid-cols-2 p-2 max-h-[15rem] overflow-auto">
+					<div class="gap-2 grid grid-cols-2 max-[600px]:grid-cols-1 p-2 max-h-[15rem] overflow-auto">
 						<div class="bg-theme-color-200 px-2 rounded grid gap-2 grid-cols-[auto_1fr] items-center" v-for="each in data.characters">
 							<div class="w-[3rem] aspect-[2/3]">
 								<img loading="lazy" v-if="each.poster" :src="each.poster" class="w-full h-full object-cover object-center" />
@@ -71,7 +71,7 @@
 				<!-- staffs -->
 				<div class="bg-theme-color-50 rounded" v-if="data?.staffs?.length">
 					<h2 class="text-center text-lg bg-theme-color-300 rounded">Staffs</h2>
-					<div class="gap-2 grid grid-cols-2 p-2 max-h-[15rem] overflow-auto">
+					<div class="gap-2 grid grid-cols-2 max-[600px]:grid-cols-1 p-2 max-h-[15rem] overflow-auto">
 						<div class="bg-theme-color-200 px-2 rounded grid gap-2 grid-cols-[auto_1fr] items-center" v-for="each in data.staffs">
 							<div class="w-[3rem] aspect-[2/3]">
 								<img loading="lazy" v-if="each.poster" :src="each.poster" class="w-full h-full object-cover object-center" />
@@ -88,7 +88,7 @@
 			<div class="flex flex-col gap-2" v-else>
 				<div class="bg-theme-color-50 rounded" v-for="e in ([].length = 2)">
 					<h2 class="text-center text-lg !bg-theme-color-300 rounded loading">&nbsp;</h2>
-					<div class="gap-2 grid grid-cols-2 p-2 max-h-[15rem] overflow-auto">
+					<div class="gap-2 grid grid-cols-2 max-[600px]:grid-cols-1 p-2 max-h-[15rem] overflow-auto">
 						<div class="px-2 rounded grid gap-2 grid-cols-[auto_1fr] items-center loading" v-for="e in ([].length = 4)">
 							<div class="w-[3rem] aspect-[2/3]"></div>
 							<div class="py-2"></div>

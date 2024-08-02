@@ -11,11 +11,11 @@
 			<button v-if="!gotEmail" type="submit" class="bg-theme-color-500 w-fit mx-auto col-[1/-1] px-2 py-1 rounded hover:shadow-md transition-shadow" :disabled="sending">Send Code</button>
 			<slot v-else>
 				<label for="code">Code:</label>
-				<input type="text" autocomplete="off" id="code" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter code form email" required minlength="16" maxlength="16" v-model="codeInp" :disabled="sending" />
+				<input type="text" autocomplete="off" id="code" class="w-full px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter code form email" required minlength="16" maxlength="16" v-model="codeInp" :disabled="sending" />
 				<label for="pass">Password:</label>
-				<input type="password" id="pass" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter new password" required minlength="6" v-model="passInp" :disabled="sending" />
+				<input type="password" id="pass" class="w-full px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter new password" required minlength="6" v-model="passInp" :disabled="sending" />
 				<label for="re_pass">&nbsp;</label>
-				<input type="password" id="re_pass" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Retype that password" required minlength="6" v-model="re_passInp" @input="comparePass" :disabled="sending" />
+				<input type="password" id="re_pass" class="w-full px-1 rounded transition-shadow focus:shadow-md" placeholder="Retype that password" required minlength="6" v-model="re_passInp" @input="comparePass" :disabled="sending" />
 				<button type="submit" class="bg-theme-color-500 w-fit mx-auto col-[1/-1] px-2 py-1 rounded hover:shadow-md transition-shadow" :disabled="sending">Change Password</button>
 			</slot>
 			<div class="col-[1/-1] text-center flex gap-2 justify-center">

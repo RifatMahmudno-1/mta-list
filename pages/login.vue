@@ -3,9 +3,9 @@
 		<form @submit.prevent="submit" class="w-full max-w-[35rem] bg-theme-color-300 p-4 rounded border-theme-color-500 border-2 grid gap-2 shadow-md grid-cols-[auto_1fr] items-center" spellcheck="false">
 			<h1 class="w-fit mx-auto px-4 pb-1 border-b-2 border-theme-color-500 text-lg font-semibold col-[1/-1]">Login</h1>
 			<label for="email">Email:</label>
-			<input type="email" id="email" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter your email address" required minlength="8" v-model="emailInp" :disabled="sending" />
+			<input type="email" id="email" class="w-full px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter your email address" required minlength="8" v-model="emailInp" :disabled="sending" />
 			<label for="pass">Password:</label>
-			<input type="password" id="pass" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter your password" required minlength="6" v-model="passInp" :disabled="sending" />
+			<input type="password" id="pass" class="w-full px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter your password" required minlength="6" v-model="passInp" :disabled="sending" />
 			<input type="checkbox" v-model="stayInp" class="justify-self-end accent-theme-color-500" id="stay" />
 			<label for="stay" class="select-none">Stay logged in</label>
 			<button type="submit" class="bg-theme-color-500 w-fit mx-auto col-[1/-1] px-2 py-1 rounded hover:shadow-md transition-shadow" :disabled="sending">Login</button>

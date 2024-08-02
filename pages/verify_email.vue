@@ -11,7 +11,7 @@
 			<button v-if="!gotEmail" type="submit" class="bg-theme-color-500 w-fit mx-auto col-[1/-1] px-2 py-1 rounded hover:shadow-md transition-shadow" :disabled="sending">Send Code</button>
 			<slot v-else>
 				<label for="code">Code:</label>
-				<input type="text" autocomplete="off" id="code" class="px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter code form email" required minlength="8" maxlength="8" v-model="codeInp" :disabled="sending" />
+				<input type="text" autocomplete="off" id="code" class="w-full px-1 rounded transition-shadow focus:shadow-md" placeholder="Enter code form email" required minlength="8" maxlength="8" v-model="codeInp" :disabled="sending" />
 				<button type="submit" class="bg-theme-color-500 w-fit mx-auto col-[1/-1] px-2 py-1 rounded hover:shadow-md transition-shadow" :disabled="sending">Verify</button>
 			</slot>
 			<div class="col-[1/-1] text-center flex gap-2 justify-center">

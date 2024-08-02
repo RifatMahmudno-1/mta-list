@@ -1,20 +1,20 @@
 <template>
 	<main class="px-2">
-		<div class="grid grid-cols-[1fr_auto] gap-4 bg-theme-color-300 p-2 rounded">
-			<div class="flex gap-4">
+		<div class="grid grid-cols-[1fr_auto] gap-4 bg-theme-color-300 p-2 rounded items-center">
+			<div class="flex gap-x-4 max-[550px]:flex-col gap-y-2">
 				<div class="flex items-center gap-2">
 					<span>Sort:</span>
-					<Select :selectables="sortSelectables" :selected="sortSelected" @select="e => (sortSelected = e)" v-if="!pending" />
+					<Select :selectables="sortSelectables" :selected="sortSelected" @select="e => (sortSelected = e)" v-if="!pending" class="z-[2]" />
 					<span class="!bg-theme-color-500 loading w-28 rounded" v-else>&nbsp;</span>
 				</div>
 				<div class="flex items-center gap-2">
 					<span>Filter:</span>
-					<Select :selectables="filterSelectables" :selected="filterSelected" @select="e => (filterSelected = e)" position="right" v-if="!pending" />
+					<Select :selectables="filterSelectables" :selected="filterSelected" @select="e => (filterSelected = e)" v-if="!pending" />
 					<span class="!bg-theme-color-500 loading w-28 rounded" v-else>&nbsp;</span>
 				</div>
 			</div>
-			<button class="rounded flex items-center gap-2 px-2 py-1 bg-theme-color-500" @click="copyLinkFn">
-				<span>Share</span>
+			<button class="rounded flex items-center gap-2 px-2 py-1 bg-theme-color-500 max-[550px]:aspect-square" @click="copyLinkFn">
+				<span class="max-[550px]:hidden">Share</span>
 				<IconShare />
 			</button>
 		</div>
@@ -48,11 +48,11 @@
 
 								<div class="hidden absolute bg-black bg-opacity-50 w-full h-full top-0 left-0 rounded justify-items-center items-center"></div>
 							</div>
-							<div class="hidden absolute w-[6rem] aspect-[2/3] top-1/2 -translate-y-1/2 right-0 rounded overflow-hidden bg-theme-color-300 shadow-md z-10">
+							<div class="hidden max-[550px]:!hidden absolute w-[6rem] aspect-[2/3] top-1/2 -translate-y-1/2 right-0 rounded overflow-hidden bg-theme-color-300 shadow-md z-10">
 								<IconNoimage class="w-full h-full" v-if="!each.poster" />
 								<img v-else loading="lazy" :src="each.poster" class="object-cover object-center w-full h-full" />
 							</div>
-							<NuxtLink :href="`/${each.type}/id/${each.id}`" class="line-clamp-1 justify-self-start font-semibold">{{ each.title }}</NuxtLink>
+							<NuxtLink :href="`/${each.type}/id/${each.id}`" class="line-clamp-2 justify-self-start font-semibold break-words">{{ each.title }}</NuxtLink>
 							<p>{{ each.score }}</p>
 							<p>{{ typeFix[each.type] || each.type }}</p>
 						</div>

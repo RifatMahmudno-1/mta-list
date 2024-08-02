@@ -9,7 +9,7 @@
 				<!-- poster and title -->
 				<div class="bg-theme-color-300 px-8 grid gap-4 grid-cols-[auto_1fr] pb-2">
 					<!-- poster -->
-					<div class="w-[8rem] aspect-[2/1.5] relative">
+					<div class="w-[8rem] max-[550px]:w-[7rem] max-[450px]:w-[6rem] max-[300px]:w-[5rem] aspect-[2/1.5] relative">
 						<div class="w-full translate-y-[-50%] absolute aspect-[2/3] rounded overflow-hidden bg-theme-color-200">
 							<img v-if="props.poster" :src="props.poster" class="w-full h-full object-cover object-center" />
 							<IconNoimage class="w-full h-full" v-else />
@@ -22,7 +22,7 @@
 				</div>
 			</div>
 			<!-- List Status -->
-			<form class="m-4 flex justify-evenly flex-wrap gap-y-2" @submit.prevent="submit" v-if="!pending">
+			<form class="m-4 flex justify-evenly flex-wrap gap-2" @submit.prevent="submit" v-if="!pending">
 				<div class="flex items-center gap-2">
 					<span>Status:</span>
 					<Select :selectables="statusSelectables" :selected="statusSelected" @select="e => (statusSelected = e)" :disabled="busy" />

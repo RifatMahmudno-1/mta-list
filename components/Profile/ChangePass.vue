@@ -4,7 +4,7 @@
 		<div class="grid grid-cols-[auto_1fr] max-[350px]:grid-cols-1 gap-2">
 			<label for="n_pass">New password:</label>
 			<input type="password" id="n_pass" required minlength="6" class="w-full rounded focus:shadow-md px-1 bg-white" placeholder="Enter new password" :disabled="sending || !editing" v-model="new_pass" />
-			<label for="re_n_pass" class="max-[350px]:hidden">thrthtr</label>
+			<label for="re_n_pass" class="max-[350px]:hidden"></label>
 			<input type="password" id="re_n_pass" required minlength="6" class="w-full rounded focus:shadow-md px-1 bg-white" placeholder="Retype that new password" :disabled="sending || !editing" v-model="re_new_pass" @change="comparePass" />
 			<label for="pass_c_p" v-if="editing">Current Password:</label>
 			<input type="password" id="pass_c_p" required minlength="6" class="w-full rounded focus:shadow-md px-1 bg-white" placeholder="Enter your current password" :disabled="sending" v-model="pass" v-if="editing" />

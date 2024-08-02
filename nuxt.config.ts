@@ -2,9 +2,12 @@
 export default defineNuxtConfig({
 	devtools: { enabled: false },
 	typescript: { shim: true },
-	modules: ['@nuxtjs/tailwindcss'],
 	css: ['~/assets/css/global.css'],
-	tailwindcss: { editorSupport: true },
+	postcss: {
+		plugins: {
+			tailwindcss: {}
+		}
+	},
 	vite: { build: { assetsInlineLimit: 0 } },
 	app: {
 		head: {

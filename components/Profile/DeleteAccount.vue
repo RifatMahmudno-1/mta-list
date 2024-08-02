@@ -11,7 +11,7 @@
 			</slot>
 			<slot v-if="stat === 2">
 				<p>Enter your current password and press delete to delete this account.</p>
-				<div class="grid gap-2 grid-cols-[auto_1fr]">
+				<div class="grid gap-2 grid-cols-[auto_1fr] max-[350px]:grid-cols-1">
 					<label for="d_pass">Current password:</label>
 					<input :disabled="sending" type="password" id="d_pass" required minlength="6" class="w-full rounded focus:shadow-md px-1 bg-white" placeholder="Enter your current password" v-model="pass" />
 				</div>

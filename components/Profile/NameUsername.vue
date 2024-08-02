@@ -1,7 +1,7 @@
 <template>
 	<form @submit.prevent="submit" class="bg-theme-color-200 p-4 rounded w-full max-w-[50rem]">
 		<h2 class="text-lg font-semibold border-b-2 border-theme-color-500 px-2 py-1 w-fit mx-auto mb-2">Profile Info</h2>
-		<div class="grid grid-cols-[auto_1fr] gap-2">
+		<div class="grid grid-cols-[auto_1fr] max-[350px]:grid-cols-1 gap-2">
 			<label for="name">Name:</label>
 			<input type="text" id="name" required minlength="4" class="w-full rounded focus:shadow-md px-1 bg-white" placeholder="Enter your fullname" :disabled="sending || !editing" v-model="name" />
 			<label for="username">Userame:</label>

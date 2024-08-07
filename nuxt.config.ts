@@ -9,7 +9,7 @@ export default defineNuxtConfig({
 		}
 	},
 	vite: { build: { assetsInlineLimit: 0 } },
-	nitro: { publicAssets: [{ baseURL: 'logos', dir: 'public/logos', maxAge: 86400 }] },
+	// nitro: { publicAssets: [{ baseURL: 'logos', dir: 'public/logos', maxAge: 86400 }] },
 	app: {
 		head: {
 			title: 'MTA List',

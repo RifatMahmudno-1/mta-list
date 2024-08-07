@@ -8,7 +8,7 @@
 			<!-- pending -->
 			<div v-if="pending" v-for="e in ([].length = props.compact ? 10 : 20)" class="w-[10rem] max-[550px]:w-[8rem] max-[400px]:w-[7rem] max-[350px]:w-[6rem]">
 				<div class="aspect-[2/3] rounded-lg mb-1 overflow-hidden loading">&nbsp;</div>
-				<p class="px-2 loading w-[8rem] mx-auto rounded">&nbsp;</p>
+				<p class="px-2 loading w-[85%] mx-auto rounded">&nbsp;</p>
 			</div>
 
 			<!-- loaded -->

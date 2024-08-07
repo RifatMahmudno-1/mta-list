@@ -47,7 +47,7 @@
 			<NuxtLink href="/anime" class="bg-theme-color-400 px-8 py-0.5 rounded hover:shadow-md shadow-sm transition-shadow">Browse All</NuxtLink>
 		</div>
 
-		<div class="bg-theme-color-300 p-2 rounded">
+		<div class="bg-theme-color-300 p-4 rounded grid gap-2">
 			<p class="font-semibold text-lg">Data providers:</p>
 			<p>This website uses <a theme="tv" class="text-theme-color-400 font-semibold" href="https://www.themoviedb.org" target="_blank">TMDB</a> and the <a theme="movie" class="text-theme-color-400 font-semibold" href="https://developer.themoviedb.org" target="_blank">TBDB APIs</a> but is not endorsed, certified, or otherwise approved by <a theme="tv" class="text-theme-color-400 font-semibold" href="https://www.themoviedb.org" target="_blank">TMDB</a></p>
 			<p>This website uses also uses <a theme="anime" class="text-theme-color-400 font-semibold" href="https://anilist.co" target="_blank">Anilist</a></p>

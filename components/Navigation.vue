@@ -2,7 +2,7 @@
 	<nav class="sticky top-0 bg-theme-color-300 z-40 shadow-md">
 		<div class="cont grid p-2 gap-x-4 gap-y-2" :class="`max-[700px]:grid-cols-[1fr_auto] ${shouldShow ? 'grid-cols-[auto_auto_1fr_auto]' : 'grid-cols-[auto_1fr_auto]'}`">
 			<NuxtLink href="/" class="flex items-center gap-2">
-				<img src="/logos/logo_256.png" class="h-6 inline-block" />
+				<img src="/logos/logo_192.png" class="h-6 inline-block" />
 				<span>MTA List</span>
 			</NuxtLink>
 			<Select class="max-[700px]:hidden" v-if="shouldShow" :selected="selected" :selectables="selectables" @select="e => router.push(query ? { path: '/' + e + '/search', query: { query } } : { path: '/' + e })" />

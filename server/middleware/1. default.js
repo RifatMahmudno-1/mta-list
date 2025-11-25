@@ -20,7 +20,7 @@ export default defineEventHandler(async ev => {
 		await mongo.init()
 		if (mongo.connected) {
 			// don't wait and ignore error
-			Promise.all([mongo.client.db('MTAlist').collection('Users').createIndex({ email: 1 }), mongo.client.db('MTAlist').collection('Users').createIndex({ username: 1 })])
+			Promise.allSettled([mongo.client.db('MTAlist').collection('Users').createIndex({ email: 1 }), mongo.client.db('MTAlist').collection('Users').createIndex({ username: 1 })])
 		}
 
 		if (!mongo.connected) {

@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+	compatibilityDate: '2025-11-25',
 	devtools: { enabled: false },
 	typescript: { shim: true },
 	css: ['~/assets/css/global.css'],
@@ -14,7 +15,7 @@ export default defineNuxtConfig({
 		head: {
 			title: 'MTA List',
 			htmlAttrs: { lang: 'en' },
-			noscript: [{ children: 'Javascript is required to run this website' }],
+			noscript: [{ innerHTML: 'This website requires JavaScript to be enabled.' }],
 			meta: [
 				{ name: 'referrer', content: 'no-referrer' },
 				{ name: 'author', content: 'Rifat Mahmud' },
